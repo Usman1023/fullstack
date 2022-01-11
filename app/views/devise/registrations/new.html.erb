@@ -1,0 +1,80 @@
+
+<script>
+  $(document).ready(function () {
+    $("input[type=radio][name='user[type]']").click(function() {
+    if (this.value == 'NoviceUser') {
+      localStorage.setItem("option", this.value);
+      $( "#profID" ).hide();
+      $( "#servID" ).hide();
+    }
+    if (this.value == 'ExpertUser') {
+      localStorage.setItem("option", this.value);
+      $( "#profID" ).show();
+      $( "#servID" ).show();
+    }
+  });
+  var itemValue = localStorage.getItem('option');
+    if (itemValue !== null) {
+      $("input[value=\""+itemValue+"\"]").click();
+    }
+});
+</script>
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :status, 'Status:' %>
+    <%= f.select :status, [['Qualified','qualified'],['Not Qualified','not_qualified'],['Banned','banned']], {} ,id: "status"%>
+  </div>
+  <div class="field">
+    <%= f.label :type, 'User Type:' %>
+      <%= f.radio_button :type, 'NoviceUser', :checked => true %>
+      <%= f.label :NoviceUser, 'Novice'%>
+
+      <%= f.radio_button :type, 'ExpertUser'%>
+      <%= f.label :ExpertUser, 'Expert'%>
+  </div>  
+  <br>
+  <div class="field" id="profID">
+    <%= f.label :profession %><br />
+    <%= f.text_field :profession, autocomplete: "profession" %>
+  </div>
+
+  <div class="field" id="servID">
+    <%= f.label :service %><br />
+    <%= f.text_field :service, autocomplete: "service" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

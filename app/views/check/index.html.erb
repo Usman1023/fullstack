@@ -1,0 +1,12 @@
+
+<% if user_signed_in? %>
+    <center><h1><u>Comment</u></h1></center>
+    <% @poly_comment1.each do |c| %>
+        <%= link_to c do %>
+            <br>
+            <div class="card" >
+                <h5 class="card-header text-dark"><%=c.title%></h5>
+            </div>
+        <%end%>
+    <% end %>
+<% end %>

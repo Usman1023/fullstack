@@ -1,0 +1,12 @@
+
+<% if user_signed_in? %>
+    <center><h1><u>Tags</u></h1></center>
+    <% @tag.each do |t| %>
+        <%= link_to t do %>
+            <br>
+            <div class="card" >
+                <h5 class="card-header text-dark"><%=t.name%></h5>
+            </div>
+        <%end%>
+    <% end if @tag %> 
+<% end %>

@@ -1,0 +1,16 @@
+<%= form_for [@campaign , @discussion_topic] do |dt| %>
+  <% if @discussion_topic.errors.any? %>
+    <h2>Errors:</h2>
+        <ul>
+          <% @discussion_topic.errors.full_messages.each do |message| %>
+          <li><%= message%></li>
+          <% end %>
+        </ul>
+  <% end %>
+  <br>
+  <b><%= dt.label :title, 'Title' %></b>
+  <%= dt.text_field :title , class: "form-control" %>
+  <br>
+  <%= dt.submit class: "btn btn-success"%>
+  <br>    
+<% end %>

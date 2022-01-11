@@ -1,0 +1,23 @@
+<%= form_for @campaign do |camp| %>
+  <% if @campaign.errors.any? %>
+    <h2>Errors:</h2>
+        <ul>
+          <% @campaign.errors.full_messages.each do |message| %>
+          <li><%= message%></li>
+          <% end %>
+        </ul>
+  <% end %>
+  <br>
+  <b><%= camp.label :title, 'Title' %></b>
+  <%= camp.text_field :title , class: "form-control" %>
+  <br>
+  <b><%= camp.label :purpose, 'Purpose' %></b>
+  <br>
+  <%= camp.text_area :purpose  , class: "form-control" , rows:"3"%>
+  <br>
+  <b><%= camp.label :estimated_duration, 'Estimated Duration:' %></b>
+  <%= camp.select :estimated_duration, [['within 1 week','within_1_week'],['within 1 month','within_1_month'],['within 3 months','within_3_months']], {} ,id: "status"%>
+  <br>
+  <%= camp.submit class: "btn btn-success"%>
+  <br>
+<% end %>

@@ -1,0 +1,27 @@
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <%= link_to "Back",  campaign_discussion_topics_url(@campaign) , class:"btn btn-secondary me-md-2 btn-sm"%>
+</div>
+
+<div class="card" >
+  <h5 class="card-header text-dark"><%=@discussion_topic.title%></h5>
+  
+  <%if @discussion_topic.poly_comments.any?%>
+    <hr>
+    <h4>Comments</h4>
+    <%= render @discussion_topic.poly_comments %>   
+  <%end %>
+
+  <h6>Add Comment</h6>
+  <%= form_for([@discussion_topic, @discussion_topic.poly_comments.build]) do |f|%>
+    <%= f.text_area :title%>
+    <%= f.hidden_field :commentable_type%>
+    <%= f.submit "Add"%>
+  <%end%>
+</div>
+
+<% if can? :edit, @discussion_topic %>
+  <%= link_to ' Edit ' , edit_campaign_discussion_topic_path(@campaign, @discussion_topic) , class:"btn btn-primary btn-sm" %>
+<% end %>
+<% if can? :destroy, @discussion_topic %>
+  <%= link_to ' Delete ' , campaign_discussion_topic_path(@campaign, @discussion_topic) , method: :delete , data:{confirm:"are you sure?"} , class:"btn btn-danger btn-sm "%>
+<% end %>

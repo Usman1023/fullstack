@@ -1,0 +1,7 @@
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <a class="btn btn-secondary me-md-2 btn-sm" href="/campaigns">Back</a>
+</div>
+<% if user_signed_in? %>
+    <center><h1><u>Edit Campaign<u></h1></center>
+    <%= render 'form' %>
+<%end%>

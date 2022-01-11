@@ -1,0 +1,22 @@
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <%= link_to "Back",  campaign_url(@campaign) , class:"btn btn-secondary me-md-2 btn-sm"%>
+</div>
+
+<% if user_signed_in? %>
+  <center><h1><u>DiscussionTopics</u></h1></center>
+
+  <% if current_user.type=='NoviceUser' %>
+    <% if can? :create, DiscussionTopic %>
+      <%= link_to "Create Discussion Topic", new_campaign_discussion_topic_path(@campaign)%>
+    <% end %>
+  <% end %>
+  
+  <% @discussion_topic.each do |dt| %>
+    <%= link_to [@campaign, dt] do %>
+      <br>
+      <div class="card" >
+        <h5 class="card-header text-dark"><%=dt.title%></h5>
+      </div>
+    <%end%>
+  <% end %>
+<% end %>

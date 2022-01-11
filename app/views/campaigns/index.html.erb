@@ -1,0 +1,29 @@
+
+<% if user_signed_in? %>
+  <center><h1><u>Campaigns</u></h1></center>
+  <% @campaign.each do |camp| %>
+    <%= link_to camp do%>
+    
+      <div  style='border: 1px solid black; background-color: #add8e6;'>
+        <div class="card" >
+          <h5 class="card-header text-dark"><%=camp.title%></h5>
+          <div class="card-body">
+            <p class="card-text text-dark">Purpose : <%=truncate(camp.purpose, :length=>300)%></p>
+            <p class="card-text text-dark">Estimated Duration : <%=camp.estimated_duration %></p>                
+          </div> 
+
+          <% if can? :update, camp %>
+            <%= link_to ' Edit ' , edit_campaign_path(camp) , class:"btn btn-primary btn-sm" %>
+          <% end %>
+
+          <% if can? :destroy, camp %>
+            <%= link_to ' Delete ' , campaign_path(camp) , method: :delete , data:{confirm:"are you sure?"} , class:"btn btn-danger btn-sm "%> 
+          <% end %>
+        
+        </div>
+      </div>
+    <% end %>
+      <br>
+    
+  <% end %>
+<% end %>

@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <center><h1><u>Create New Campaign</u></h1> </center>
+  <hr>
+
+  <% if can? :create, Campaign%>
+    <%= render 'form' %>
+  <%else%>
+      <h2>Sorry ! You are not authorized.</h2>
+  <%end%>
+  
+<%end%>

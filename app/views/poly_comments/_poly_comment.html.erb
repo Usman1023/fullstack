@@ -1,0 +1,8 @@
+<div>
+  <%= poly_comment.title  %>
+
+  <% if can? :destroy, poly_comment %>
+    <%= link_to "Delete", campaign_poly_comment_path(@campaign, poly_comment), method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
+</div>
+

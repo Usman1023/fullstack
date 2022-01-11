@@ -1,0 +1,13 @@
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <%= link_to "Back",  campaign_discussion_topics_url(@campaign) , class:"btn btn-secondary me-md-2 btn-sm"%>
+</div>
+
+<center><h1><u>Create New Discussion Topic</u></h1> </center>
+<hr>
+<% if can? :create, DiscussionTopic%>
+    <%= render 'form' %>
+<%else%>
+    <h2>Sorry ! You are not authorized.</h2>
+<%end%>
+

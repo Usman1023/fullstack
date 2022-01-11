@@ -1,0 +1,7 @@
+
+<div class="card" >
+  <h5 class="card-header text-dark"><%=@poly_comment.title%></h5>
+</div>
+
+<%= link_to ' Edit ' , edit_poly_comment_path(@poly_comment) , class:"btn btn-primary btn-sm" %>
+<%= link_to ' Delete ' , poly_comment_path(@poly_comment) , method: :delete , data:{confirm:"are you sure?"} , class:"btn btn-danger btn-sm "%> 
